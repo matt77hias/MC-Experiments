@@ -8,7 +8,7 @@ Some Monte Carlo experiments used for teaching Monte Carlo Integration Technique
 ## Use
 
 ### The effect of increasing the number of samples
-<p align="center"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_n2.png" width="286"></p>
+<p align="center"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_n3.png" width="286"></p>
 
 ### The effect of increasing the dimensionality
 <p align="center"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_n2.png" width="286"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_n3.png" width="286"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_n10.png" width="286"></p>
