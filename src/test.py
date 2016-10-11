@@ -22,6 +22,8 @@ def test(exp=12):
     def f_w4(s): return volume_nunitsphere_hitmiss(n=3, samples=s, window=4.0)
     def f_w8(s): return volume_nunitsphere_hitmiss(n=3, samples=s, window=8.0)
     
-    
+    vis_RMSE(f=f_n2, config=config, exact=vol2)
+    vis_RMSE(f=f_n3, config=config, exact=vol3)
+    vis_RMSE(f=f_n10, config=config, exact=vol10)
     vis_RMSE(f=f_w4, config=config, exact=vol3)
     vis_RMSE(f=f_w8, config=config, exact=vol3)
