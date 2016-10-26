@@ -1,4 +1,4 @@
-from geometry import volume_nunitsphere_exact, volume_nunitsphere_hitmiss
+from session1 import volume_nunitsphere_exact, volume_nunitsphere_hitmiss
 from mc_tools import Configuration, vis_RMSE
 
 ###################################################################################################################################################################################
