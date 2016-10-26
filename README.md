@@ -18,5 +18,5 @@ Some Monte Carlo experiments used for teaching Monte Carlo Integration Technique
 
 ```python
 # Code
-test.test()
+test.test_session1()
 ```

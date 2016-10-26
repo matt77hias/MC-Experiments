@@ -1,10 +1,11 @@
-from session1 import volume_nunitsphere_exact, volume_nunitsphere_hitmiss
 from mc_tools import Configuration, vis_RMSE
 
 ###################################################################################################################################################################################
-## Test
+## Test: Session 1
 ################################################################################################################################################################################### 
-def test(exp=12):
+from session1 import volume_nunitsphere_exact, volume_nunitsphere_hitmiss
+
+def test_session1(exp=12):
     vol2 = volume_nunitsphere_exact(n=2)
     vol3 = volume_nunitsphere_exact(n=3)
     vol10 = volume_nunitsphere_exact(n=10)
@@ -26,3 +27,20 @@ def test(exp=12):
     vis_RMSE(f=f_n10, config=config, exact=vol10)
     vis_RMSE(f=f_w4, config=config, exact=vol3)
     vis_RMSE(f=f_w8, config=config, exact=vol3)
+    
+###################################################################################################################################################################################
+## Test: Session 2
+################################################################################################################################################################################### 
+from session2 import integral_exact, integral_hitmiss, integral_uniform
+
+def test_session2(a, n, exp=12):
+    area = integral_exact(a, n)
+    
+    config = Configuration()
+    config.nb_samples = [2**i for i in range(1, exp+1)]
+    
+    def f_hm(s):  return integral_hitmiss(a=a, n=n, samples=s, plot=False)
+    def f_u(s): return integral_uniform(a=a, n=n, samples=s, plot=False)
+    
+    vis_RMSE(f=f_hm, config=config, exact=area)
+    vis_RMSE(f=f_u, config=config, exact=area)
