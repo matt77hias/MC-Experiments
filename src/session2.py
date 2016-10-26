@@ -25,7 +25,7 @@ def integral_exact(a, n, low=0.0, high=np.pi):
             I += M * f(high, low, n)
             M *= ((n - 1.0) / n)
  
-def integral_hitmiss(a, n, low=0.0, high=np.pi, samples=1000, rng=np.random, plot=True, plot_chain=False, plotter=None):
+def integral_hitmiss(a, n, low=0.0, high=np.pi, samples=8192, rng=np.random, plot=True, plot_chain=False, plotter=None):
     if plot and plotter is None:
         plotter = Plotter2D()
     if plot and not plot_chain:
@@ -55,7 +55,7 @@ def integral_hitmiss(a, n, low=0.0, high=np.pi, samples=1000, rng=np.random, plo
 def evaluate_integrand(x, a, n):
     return np.cos(a*x)**int(n)
      
-def integral_uniform(a, n, low=0.0, high=np.pi, samples=1000, rng=np.random, plot=True, plot_chain=False, plotter=None):
+def integral_uniform(a, n, low=0.0, high=np.pi, samples=8192, rng=np.random, plot=True, plot_chain=False, plotter=None):
     if plot and plotter is None:
         plotter = Plotter2D()
     if plot and not plot_chain:
@@ -76,7 +76,7 @@ def integral_uniform(a, n, low=0.0, high=np.pi, samples=1000, rng=np.random, plo
                 plotter.plot_line([x, 0.0], [x, fx], color='darkgreen')
     return delta * I / samples
     
-def integral_stratified(a, n, low=0.0, high=np.pi, samples=10000, strata=None, rng=np.random, plot=True, plot_chain=False, plotter=None):
+def integral_stratified(a, n, low=0.0, high=np.pi, samples=8192, strata=None, rng=np.random, plot=True, plot_chain=False, plotter=None):
     if plot and plotter is None:
         plotter = Plotter2D()
     if plot and not plot_chain:
@@ -93,6 +93,28 @@ def integral_stratified(a, n, low=0.0, high=np.pi, samples=10000, strata=None, r
     for i in range(strata):
         I += integral_uniform(a=a, n=n, low=low+i*delta, high=low+(i+1)*delta, samples=samples_per_strata, rng=rng, plot=plot, plot_chain=True, plotter=plotter)
     return I
+  
+from qmc import halton  
+def integral_halton(a, n, low=0.0, high=np.pi, samples=8192, strata=None, rng=np.random, plot=True, plot_chain=False, plotter=None):
+    if plot and plotter is None:
+        plotter = Plotter2D()
+    if plot and not plot_chain:
+        plotter.plot_AABB([low, -1.0], [high, 1.0], color='k')
+        plotter.plot_line([low, 0.0], [high, 0.0], color='k')
+        plot_integrand(a=a, n=n, low=low, high=high, plotter=plotter)
+        
+    delta = (high - low)
+    I = 0.0
+    for s in range(samples):
+        x = low + halton(index=s)[0] * delta
+        fx = evaluate_integrand(x=x, a=a, n=n)
+        I += fx
+        if plot:
+            if fx < 0.0:
+                plotter.plot_line([x, 0.0], [x, fx], color='lightgreen')
+            else:
+                plotter.plot_line([x, 0.0], [x, fx], color='darkgreen')
+    return delta * I / samples
     
 def plot_integrand(a, n, low=0.0, high=np.pi, samples=10000, plotter=None):
     if plotter is None:

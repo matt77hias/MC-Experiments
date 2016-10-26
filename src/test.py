@@ -31,7 +31,7 @@ def test_session1(exp=12):
 ###################################################################################################################################################################################
 ## Test: Session 2
 ################################################################################################################################################################################### 
-from session2 import integral_exact, integral_hitmiss, integral_uniform
+from session2 import integral_exact, integral_hitmiss, integral_uniform, integral_stratified, integral_halton
 
 def test_session2(a, n, exp=12):
     area = integral_exact(a, n)
@@ -41,6 +41,10 @@ def test_session2(a, n, exp=12):
     
     def f_hm(s):  return integral_hitmiss(a=a, n=n, samples=s, plot=False)
     def f_u(s): return integral_uniform(a=a, n=n, samples=s, plot=False)
+    def f_s(s): return integral_stratified(a=a, n=n, samples=s, plot=False)
+    def f_h(s): return integral_halton(a=a, n=n, samples=s, plot=False)
     
     vis_RMSE(f=f_hm, config=config, exact=area)
     vis_RMSE(f=f_u, config=config, exact=area)
+    vis_RMSE(f=f_s, config=config, exact=area)
+    vis_RMSE(f=f_h, config=config, exact=area, biased=True)

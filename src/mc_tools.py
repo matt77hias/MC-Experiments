@@ -33,7 +33,7 @@ def calculate_experiments(f, config=Configuration()):
 def calculate_RMSE(data, biased=False, exact=None):
     if biased:
         if exact is not None:
-            return np.sqrt(np.mean((data - exact)**2, axis=0, ddof=0))
+            return np.sqrt(np.mean((data - exact)**2, axis=0))
         else:
             return np.sqrt(np.mean((data - np.mean(data, axis=0))**2, axis=0, ddof=1))
     else:
