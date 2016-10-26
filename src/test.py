@@ -8,7 +8,6 @@ def test(exp=12):
     vol2 = volume_nunitsphere_exact(n=2)
     vol3 = volume_nunitsphere_exact(n=3)
     vol10 = volume_nunitsphere_exact(n=10)
-    vol100 = volume_nunitsphere_exact(n=100)
     
     config = Configuration()
     config.nb_samples = [2**i for i in range(1, exp+1)]

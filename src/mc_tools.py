@@ -30,10 +30,19 @@ def calculate_experiments(f, config=Configuration()):
     pool.join() 
     return experiments
     
+def calculate_RMSE(data, biased=False, exact=None):
+    if biased:
+        if exact is not None:
+            return np.mean((data - exact)**2, axis=0, ddof=0)
+        else:
+            return np.mean((data - np.mean(data, axis=0))**2, axis=0, ddof=1)
+    else:
+        return np.std(data, axis=0, ddof=1)
+    
 ###################################################################################################################################################################################
 ## Bootstrap sampling
 ################################################################################################################################################################################### 
-def bootstrapping(data, config=Configuration()):
+def bootstrapping(data, config=Configuration(), biased=False, exact=None):
     log_nb_samples = np.log2(config.nb_samples)
     RMSEs = np.zeros((config.nb_merges, len(config.nb_samples)))
     coefficients = np.zeros((config.nb_merges, 2))
@@ -44,8 +53,8 @@ def bootstrapping(data, config=Configuration()):
         for j in range(size):
             for s in range(len(config.nb_samples)):
                 re = np.random.randint(low=0, high=config.nb_experiments)
-                mdata[j, s] = data[re, s]     
-        RMSEs[m,:] = np.std(mdata, axis=0, ddof=1)
+                mdata[j, s] = data[re, s]
+        RMSEs[m,:] = calculate_RMSE(data=mdata, biased=biased, exact=exact)
         log_RMSE = np.log2(RMSEs[m,:])
         # Fitting     
         # uniform weights due to loglog scale 
@@ -57,13 +66,13 @@ def bootstrapping(data, config=Configuration()):
 ###################################################################################################################################################################################
 ## Visualization
 ###################################################################################################################################################################################
-def vis_RMSE(f, config=Configuration(), exact=None, plot=True, save=True):
+def vis_RMSE(f, config=Configuration(), biased=False, exact=None, plot=True, save=True):
     # nb_experiments x len(nb_samples)
     data = calculate_experiments(f=f, config=config)
     # Select 1 RMSE
-    RMSE = np.std(data, axis=0, ddof=1)
+    RMSE = calculate_RMSE(data=data, biased=biased, exact=exact)
     # Bootstrapping coefficients
-    RMSE_RMSE, coefficient_RMSE = bootstrapping(data, config=config)
+    RMSE_RMSE, coefficient_RMSE = bootstrapping(data=data, config=config, biased=biased, exact=exact)
     print('slope RMSE:\t' + str(coefficient_RMSE[0]))
     print('intercept RMSE:\t' + str(coefficient_RMSE[1]))
     # Visualization
