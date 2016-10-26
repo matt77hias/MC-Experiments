@@ -24,9 +24,22 @@ def integral_exact(a, n, low=0.0, high=np.pi):
             I += M * f(high, low, n)
             M *= ((n - 1.0) / n)
  
+def integral_hitmiss(a, n, low=0.0, high=np.pi, samples=1000, rng=np.random):
+    delta = (high - low)
+    I = 0.0
+    for s in range(samples):
+        x = low + rng.random() * delta
+        y = -1.0 + rng.random() * 2.0
+        fx = evaluate_integrand(x=x, a=a, n=n)
+        if fx < y and y <= 0.0:
+            I -= 1 
+        elif fx > y and y >= 0.0:
+            I += 1
+    return 2.0 * delta * I / samples
+ 
 def evaluate_integrand(x, a, n):
     return np.cos(a*x)**int(n)
-    
+     
 def integral_uniform(a, n, low=0.0, high=np.pi, samples=1000, rng=np.random):
     delta = (high - low)
     I = 0.0
