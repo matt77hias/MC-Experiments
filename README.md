@@ -10,13 +10,23 @@ Some Monte Carlo experiments used for teaching Monte Carlo Integration Technique
 ### Basics
 
 #### The effect of increasing the number of samples
-<p align="center"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_n3.png" width="286"></p>
+<p align="center">
+<img src="res/RMSE_f_n3.png" width="286">
+</p>
 
 #### The effect of increasing the dimensionality
-<p align="center"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_n2.png" width="286"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_n3.png" width="286"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_n10.png" width="286"></p>
+<p align="center">
+<img src="res/RMSE_f_n2.png" width="286">
+<img src="res/RMSE_f_n3.png" width="286">
+<img src="res/RMSE_f_n10.png" width="286">
+</p>
 
 #### The effect of increasing the domain
-<p align="center"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_n3.png" width="286"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_w4.png" width="286"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_w8.png" width="286"></p>
+<p align="center">
+<img src="res/RMSE_f_n3.png" width="286">
+<img src="res/RMSE_f_w4.png" width="286">
+<img src="res/RMSE_f_w8.png" width="286">
+</p>
 
 ```python
 # Code
@@ -26,10 +36,16 @@ test.test_session1()
 ### Sampling strategies
 
 #### Monte Carlo sampling strategies
-<p align="center"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_hm.png" width="286"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_u.png" width="286"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_s.png" width="286"></p>
+<p align="center">
+<img src="res/RMSE_f_hm.png" width="286">
+<img src="res/RMSE_f_u.png" width="286">
+<img src="res/RMSE_f_s.png" width="286">
+</p>
 
 #### Quasi Monte Carlo sampling strategies
-<p align="center"><img src="https://github.com/matt77hias/MCExperiments/blob/master/res/RMSE_f_h.png" width="286"></p>
+<p align="center">
+<img src="res/RMSE_f_h.png" width="286">
+</p>
 
 ```python
 # Code
