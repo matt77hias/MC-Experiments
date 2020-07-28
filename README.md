@@ -21,16 +21,16 @@ Some Monte Carlo experiments used for teaching Monte Carlo Integration Technique
 
 #### The effect of increasing the dimensionality
 <p align="center">
-<img src="res/RMSE_f_n2.png" width="285">
-<img src="res/RMSE_f_n3.png" width="285">
-<img src="res/RMSE_f_n10.png" width="285">
+<img src="res/RMSE_f_n2.png" width="273">
+<img src="res/RMSE_f_n3.png" width="273">
+<img src="res/RMSE_f_n10.png" width="273">
 </p>
 
 #### The effect of increasing the domain
 <p align="center">
-<img src="res/RMSE_f_n3.png" width="285">
-<img src="res/RMSE_f_w4.png" width="285">
-<img src="res/RMSE_f_w8.png" width="285">
+<img src="res/RMSE_f_n3.png" width="273">
+<img src="res/RMSE_f_w4.png" width="273">
+<img src="res/RMSE_f_w8.png" width="273">
 </p>
 
 ```python
@@ -42,14 +42,14 @@ test.test_session1()
 
 #### Monte Carlo sampling strategies
 <p align="center">
-<img src="res/RMSE_f_hm.png" width="285">
-<img src="res/RMSE_f_u.png" width="285">
-<img src="res/RMSE_f_s.png" width="285">
+<img src="res/RMSE_f_hm.png" width="273">
+<img src="res/RMSE_f_u.png" width="273">
+<img src="res/RMSE_f_s.png" width="273">
 </p>
 
 #### Quasi Monte Carlo sampling strategies
 <p align="center">
-<img src="res/RMSE_f_h.png" width="285">
+<img src="res/RMSE_f_h.png" width="273">
 </p>
 
 ```python
